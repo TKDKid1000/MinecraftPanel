@@ -1,0 +1,36 @@
+{
+  "name": "minecraftpanel",
+  "version": "1.0.0",
+  "description": "Bare-bones minecraft panel for my recording server",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon nodemon.json",
+    "start": "./bin/www",
+    "sass": "sass ./assets/sass/:./assets/css/",
+    "build": "npm run ts && npm run sass",
+    "ts": "tsc -p tsconfig.json"
+  },
+  "author": "TKDKid1000",
+  "license": "ISC",
+  "dependencies": {
+    "@js.properties/properties": "^0.5.4",
+    "@types/body-parser": "^1.19.0",
+    "@types/cookie-session": "^2.0.42",
+    "@types/express": "^4.17.1",
+    "@types/marked": "^2.0.3",
+    "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
+    "express": "^4.17.1",
+    "liquidjs": "^9.25.1",
+    "marked": "^2.0.3",
+    "minecraft-server-util": "^3.6.0",
+    "node-ipc": "^10.0.2",
+    "nodemon": "^2.0.7",
+    "sass": "^1.37.5",
+    "serve-favicon": "^2.5.0",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@types/node-ipc": "^9.1.5"
+  }
+}

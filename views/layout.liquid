@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <title>{{ title }} - {{ active }}</title>
+    </head>
+    <body>
+        <div class="terminal-nav navbar">
+            <div class="terminal-logo">
+                <div class="logo terminal-prompt">
+                    <a href="/" class="no-style">Minecraft Panel</a>
+                </div>
+            </div>
+            <nav class="terminal-menu">
+                <ul>
+                    <li>
+                        <a class="menu-item {% if active == "console" %}active{% endif %}" href="/">Console</a>
+                    </li>
+                    <li>
+                        <a class="menu-item {% if active == "status" %}active{% endif %}" href="/status">Status</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>

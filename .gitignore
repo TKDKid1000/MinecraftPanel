@@ -1,0 +1,6 @@
+/node_modules/
+/minecraft/
+/build/
+/.vscode/
+/package-lock.json
+/minecraft.log

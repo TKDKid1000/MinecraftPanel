@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    @extend .terminal;
+}
+
+#console {
+    // width: 100%;
+    // height: 50%;
+    word-wrap: break-word;
+}
+
+.navbar {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.server-offline {
+    background-color: red;
+}
+
+.server-online {
+    background-color: green;
+}
+
+@import "terminal"

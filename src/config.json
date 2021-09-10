@@ -1,0 +1,7 @@
+{
+    "cmd": "java -Xmx1G -Xms1G -jar fabric.jar nogui",
+    "server": {
+        "port": 8082,
+        "hostname": "localhost"
+    }
+}
