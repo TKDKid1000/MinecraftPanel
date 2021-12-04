@@ -1,11 +1,11 @@
+@import "../../node_modules/terminal.css/dist/terminal.css";
+@import "variables";
+
 body {
     margin: 0;
-    @extend .terminal;
 }
 
 #console {
-    // width: 100%;
-    // height: 50%;
     word-wrap: break-word;
 }
 
@@ -21,5 +21,3 @@ body {
 .server-online {
     background-color: green;
 }
-
-@import "terminal"

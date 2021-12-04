@@ -1,17 +1,21 @@
-import express from "express"
 import session from "cookie-session"
-import { Liquid } from "liquidjs"
+import express from "express"
 import fs from "fs"
+import { createServer } from "http"
+import path from "path"
+import { Liquid } from "liquidjs"
 import minecraft from "./minecraft"
+import { socketInit } from "./socket"
 
 const app: express.Application = express()
+const server = createServer(app)
 const engine: Liquid = new Liquid()
 
 app.engine("liquid", engine.express())
 app.set("views", "./views")
 app.set("view engine", "liquid")
 
-app.use("/assets", express.static("./assets"))
+app.use("/public", express.static("./public/"))
 app.use(session({
     name: "session",
     keys: ["7ffe99ff16650c9f4c08"],
@@ -24,12 +28,25 @@ app.use(express.urlencoded({
 const mc = new minecraft()
 mc.startMinecraft()
 
-import _console from "./routes/console";_console(app)
-import _status from "./routes/status";_status(app)
-import _api_console from "./routes/api/console";_api_console(app)
-import _api_sendCommand from "./routes/api/sendCommand";_api_sendCommand(app, mc)
-import _api_kill from "./routes/api/kill";_api_kill(app, mc)
-import _api_status from "./routes/api/status";_api_status(app)
-import _api_restart from "./routes/api/restart";_api_restart(app, mc)
+function addRoutes(dir: string) {
+    const subDirs = fs.readdirSync(dir)
+    subDirs.forEach(sd => {
+        const fp = path.resolve(dir, sd)
+        if (fs.statSync(fp).isFile()) {
+            if (fp.endsWith(".js")) {
+                const route = require(fp)
+                if (route.default) {
+                    route.default(app, mc)
+                }
+            }
+        } else {
+            addRoutes(fp)
+        }
+    })
+}
 
-export default app
+addRoutes(path.join(__dirname, "routes"))
+
+socketInit(server, mc)
+
+export default server

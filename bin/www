@@ -1,7 +1,0 @@
-#!/usr/bin/env node
-const app = require("../build/server")
-const fs = require("fs")
-const config = JSON.parse(fs.readFileSync("./build/config.json"))
-app.default.listen(config.server.port, config.server.hostname, () => {
-    console.log(`Server listening on http://${config.server.hostname}:${config.server.port}`)
-})

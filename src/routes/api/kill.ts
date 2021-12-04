@@ -7,8 +7,8 @@ export default function(app: express.Application, mc: minecraft) {
         if (session.attributes === undefined) {
             session.attributes = {}
         }
-        mc.minecraft.kill()
-        if (mc.minecraft.killed) {
+        mc.stop()
+        if (mc.stopped()) {
             res.json({success: true})
         } else {
             res.json({success: false})

@@ -21,50 +21,13 @@
                 <td>Kills the minecraft server.</td>
             </tr>
             <tr>
-                <th><kbd>Ctrl+R</kbd></th>
+                <th><kbd>Ctrl+Q</kbd></th>
                 <td>Restarts the minecraft server.</td>
             </tr>
         </tbody>
     </table>
 </div>
 <script>
-    setInterval(async () => {
-        $.getJSON("/api/console", function(data) {
-            const console = data.console.split("\n").reverse().join("\n")
-            $("#console").val(console)
-        })
-    }, 100)
-    $(document).keyup(e => {
-        if (e.ctrlKey) {
-            switch (e.keyCode) {
-                case 67: {
-                    e.preventDefault()
-                    $.ajax({
-                        url: "/api/kill",
-                        type: "POST"
-                    })
-                }
-                case 82: {
-                    e.preventDefault()
-                    $.ajax({
-                        url: "/api/restart",
-                        type: "POST"
-                    })
-                }
-            }
-        }
-    })
-    $("#command").keyup(e => {
-        if (e.keyCode == 13) {
-            if ($("#command").val().length > 0) {
-                $.ajax({
-                    url: "/api/sendCommand",
-                    type: "POST",
-                    data: {command: $("#command").val()+"\n"}
-                })
-                $("#command").val("")
-            }
-        }
-    })
+    Bundle.initConsole()
 </script>
 {% endblock %}

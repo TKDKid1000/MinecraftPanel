@@ -8,7 +8,7 @@ export default function(app: express.Application, mc: minecraft) {
             session.attributes = {}
         }
         if (req.body["command"]) {
-            mc.minecraft.stdin.write(req.body["command"])
+            mc.sendCommand(req.body["command"])
             res.json({success: true, error: null})
         } else {
             res.json({success: false, error: "No command provided"})

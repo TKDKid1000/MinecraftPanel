@@ -5,6 +5,7 @@ A simple minecraft server panel for linux.
 This program contains a server backend, and a client frontend. Made in a way for you to write your own frontend code.
 
 You need your own Minecraft [jar](https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar) from any source (fabric, spigot, paper, etc).
+> **Note:** the status and chat features only work under the standard Mojang based server or a fork of it.
 
 The next step is to edit your command flags. In the config, you can set a command used to start. 
 

@@ -7,13 +7,12 @@ export default function(app: express.Application, mc: minecraft) {
         if (session.attributes === undefined) {
             session.attributes = {}
         }
-        console.log(mc.minecraft)
-        if (mc.minecraft.killed) {
+        if (mc.stopped()) {
             mc.startMinecraft()
             res.json({success: true})
         } else {
-            mc.minecraft.kill()
-            if (mc.minecraft.killed) {
+            mc.stop()
+            if (mc.stopped()) {
                 mc.startMinecraft()
                 res.json({success: true})
             } else {
