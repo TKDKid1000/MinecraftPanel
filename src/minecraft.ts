@@ -1,6 +1,6 @@
 import {spawn, ChildProcessWithoutNullStreams} from "child_process"
-import config from "./config"
 import fs from "fs"
+import path from "path"
 import Properties from "@js.properties/properties"
 import { EventEmitter } from "events"
 
@@ -8,9 +8,11 @@ class Minecraft extends EventEmitter {
     
     private minecraft: ChildProcessWithoutNullStreams
     private minecraftLog: string[]
-    
-    constructor() {
+    private command: string
+
+    constructor(command?: string) {
         super()
+        this.command = command
         process.on("exit", event => {
             if (!this.stopped()) {
                 this.minecraft.kill()
@@ -18,13 +20,19 @@ class Minecraft extends EventEmitter {
         })
     }
     
-    startMinecraft(): void {
-        const cmdArray = config.cmd.split(" ")
+    startMinecraft(command?: string): void {
+        if (command) this.command = command
+        const cmdArray = this.command.split(" ")
         const cmdName = cmdArray[0]
         this.minecraftLog = []
         cmdArray.shift()
-        this.minecraft = spawn(cmdName, cmdArray, {cwd: "./minecraft"})
+        this.minecraft = spawn(cmdName, cmdArray, {cwd: "minecraft"})
         this.minecraft.stdout.on("data", data => {
+            console.log(data.toString())
+            this.minecraftLog.push(data.toString())
+            this.emit("console", data.toString())
+        })
+        this.minecraft.stderr.on("data", data => {
             console.log(data.toString())
             this.minecraftLog.push(data.toString())
             this.emit("console", data.toString())

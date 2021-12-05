@@ -1,6 +1,9 @@
-import config from "./config"
-import server from "./server"
+import server, { mc } from "./server"
 
-server.listen(config.server.port, config.server.hostname, () => {
-    console.log(`Server listening on http://${config.server.hostname}:${config.server.port}`)
-})
+export function startServer(command: string, port: number, hostname?: string) {
+    mc.startMinecraft(command)
+    server.listen(port, hostname, () => {
+        console.log(`Server listening on http://${hostname||"localhost"}:${port}`)
+    })
+}
+export {mc}

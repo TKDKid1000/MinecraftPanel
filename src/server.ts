@@ -12,10 +12,10 @@ const server = createServer(app)
 const engine: Liquid = new Liquid()
 
 app.engine("liquid", engine.express())
-app.set("views", "./views")
+app.set("views", path.join(__dirname, "../views"))
 app.set("view engine", "liquid")
 
-app.use("/public", express.static("./public/"))
+app.use("/public", express.static(path.join(__dirname, "../public")))
 app.use(session({
     name: "session",
     keys: ["7ffe99ff16650c9f4c08"],
@@ -26,7 +26,6 @@ app.use(express.urlencoded({
 }))
 
 const mc = new minecraft()
-mc.startMinecraft()
 
 function addRoutes(dir: string) {
     const subDirs = fs.readdirSync(dir)
@@ -49,4 +48,5 @@ addRoutes(path.join(__dirname, "routes"))
 
 socketInit(server, mc)
 
+export {mc}
 export default server
