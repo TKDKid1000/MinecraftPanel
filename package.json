@@ -1,8 +1,8 @@
 {
   "name": "minecraftpanel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bare-bones minecraft panel for my recording server",
-  "main": "build/index.js",
+  "main": "bin/cli.js",
   "scripts": {
     "test": "nodemon nodemon.json",
     "start": "node ./build/index.js",
@@ -14,6 +14,17 @@
   "license": "MIT",
   "bin": {
     "minecraft": "./bin/cli.js"
+  },
+  "files": [
+    "public/",
+    "views/",
+    "build/",
+    "bin/",
+    "index.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TKDKid1000/MinecraftPanel"
   },
   "dependencies": {
     "@js.properties/properties": "^0.5.4",
