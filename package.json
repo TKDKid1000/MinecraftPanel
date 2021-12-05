@@ -2,7 +2,7 @@
   "name": "minecraftpanel",
   "version": "1.0.3",
   "description": "Bare-bones minecraft panel for my recording server",
-  "main": "bin/cli.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "nodemon nodemon.json",
     "start": "node ./build/index.js",
