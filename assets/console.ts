@@ -1,21 +1,20 @@
 import "jquery"
 import { socket } from "."
 function initConsole() {
-    socket.on("console message", message => {
+    socket.on("console message", (message) => {
         const consoleElement = $("#console")
-        const scrollMax = consoleElement[0].scrollHeight-consoleElement.outerHeight()
+        const scrollMax = consoleElement[0].scrollHeight - consoleElement.outerHeight()
         const current = consoleElement.scrollTop()
-        consoleElement.val(consoleElement.val()+"\n"+message)
+        consoleElement.val(consoleElement.val() + "\n" + message)
         if (current >= scrollMax) {
-            consoleElement.scrollTop(consoleElement[0].scrollHeight-consoleElement.outerHeight())
+            consoleElement.scrollTop(consoleElement[0].scrollHeight - consoleElement.outerHeight())
         }
-        
     })
-    $.getJSON("/api/console", function(data) {
+    $.getJSON("/api/console", function (data) {
         const consoleValue = (<string[]>data.console).join("\n")
         $("#console").val(consoleValue)
     })
-    $(document).keyup(e => {
+    $(document).keyup((e) => {
         if (e.ctrlKey) {
             switch (e.keyCode) {
                 case 67: {
@@ -35,7 +34,7 @@ function initConsole() {
             }
         }
     })
-    $("#command").keyup(e => {
+    $("#command").keyup((e) => {
         if (e.keyCode == 13) {
             if (String($("#command").val()).length > 0) {
                 socket.emit("console command", $("#command").val())
@@ -45,4 +44,4 @@ function initConsole() {
     })
 }
 
-export {initConsole}
+export { initConsole }

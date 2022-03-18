@@ -16,20 +16,24 @@ app.set("views", path.join(__dirname, "../views"))
 app.set("view engine", "liquid")
 
 app.use("/public", express.static(path.join(__dirname, "../public")))
-app.use(session({
-    name: "session",
-    keys: ["7ffe99ff16650c9f4c08"],
-    maxAge: 24 * 60 * 60 * 1000
-}))
-app.use(express.urlencoded({
-    extended: true
-}))
+app.use(
+    session({
+        name: "session",
+        keys: ["7ffe99ff16650c9f4c08"],
+        maxAge: 24 * 60 * 60 * 1000
+    })
+)
+app.use(
+    express.urlencoded({
+        extended: true
+    })
+)
 
 const mc = new minecraft()
 
 function addRoutes(dir: string) {
     const subDirs = fs.readdirSync(dir)
-    subDirs.forEach(sd => {
+    subDirs.forEach((sd) => {
         const fp = path.resolve(dir, sd)
         if (fs.statSync(fp).isFile()) {
             if (fp.endsWith(".js")) {
@@ -48,5 +52,5 @@ addRoutes(path.join(__dirname, "routes"))
 
 socketInit(server, mc)
 
-export {mc}
+export { mc }
 export default server

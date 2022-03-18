@@ -14,28 +14,30 @@ module.exports = {
             {
                 test: /\.s?[ac]ss$/i,
                 use: [
-                  "style-loader",
-                  {
-                      loader: "css-loader",
-                      options: {
-                          url: false
-                      }
-                  },
-                  "sass-loader",
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            url: false
+                        }
+                    },
+                    "sass-loader"
                 ]
             },
             {
                 test: /\.ts$/,
-                use: [{
-                    loader: "ts-loader",
-                    options: {
-                        configFile: "tsconfig.webpack.json"
+                use: [
+                    {
+                        loader: "ts-loader",
+                        options: {
+                            configFile: "tsconfig.webpack.json"
+                        }
                     }
-                }]
+                ]
             },
             {
                 test: /\.(png|svg|jpe?g|gif)$/i,
-                loader: "file-loader",
+                loader: "file-loader"
             }
         ]
     },
@@ -43,9 +45,7 @@ module.exports = {
         alias: {
             jquery: "jquery/src/jquery"
         },
-        extensions: [
-            "", ".js", ".ts", ".css", ".scss", ".png", ".svg"
-        ],
+        extensions: ["", ".js", ".ts", ".css", ".scss", ".png", ".svg"],
         modules: ["node_modules"]
     }
 }

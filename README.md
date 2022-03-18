@@ -7,6 +7,7 @@ A simple minecraft server panel for linux.
 MinecraftPanel runs in, and is configured in, javascript. You create a `minecraftpanel.js` file containing at minimum a specific javascript function. There are several ways to setup a server.
 
 ### Cli
+
 The easiest way to setup a MinecraftPanel project is by using the cli. It only has a couple commands, but they can make creating and running Minecraft servers incredibly easy.
 
 The root command of the cli is simply titled `minecraft`, nothing complex. It can be installed with `npm i -g minecraftpanel`<br>
@@ -28,7 +29,8 @@ This command starts the server in either the current directory, or `path`. You c
 Reason for using this over npm start? It has just more customization, and is more optimized for the server.
 
 ### Manual
-The more *difficult* way is manually setting up the server (it's still not hard though). You just need very basic node.js knowledge.
+
+The more _difficult_ way is manually setting up the server (it's still not hard though). You just need very basic node.js knowledge.
 
 The advantage of the manual version is that you can add this to an existing project. If you already have a project, ignore the first 2 steps.
 
@@ -41,6 +43,7 @@ The advantage of the manual version is that you can add this to an existing proj
 7. Create a folder (in the root of your project) called `./minecraft/`, put your server jar in there.
 
 ## Usage
+
 I have ignored the entire idea of this project until now, but here is the actual usage of the panel.
 
 When you first enter the panel, you will see a screen with a command prompt, a textarea, and a navbar. This is the main area for interacting with the server. This is the place to enter commands, look at chat, op people, ban people, the whole drill.
