@@ -1,6 +1,6 @@
 {
     "name": "minecraftpanel",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Simple to use minecraft panel and cli setup",
     "main": "build/index.js",
     "scripts": {
